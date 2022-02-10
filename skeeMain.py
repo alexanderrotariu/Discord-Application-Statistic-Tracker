@@ -4,9 +4,12 @@ import discord
 from discord import Embed
 import requests
 import json
-# Imports
-
+from dotenv import load_dotenv
 import os
+
+#CREDENTIALS 
+load_dotenv('.env')
+
 
 client = discord.Client()
 
@@ -90,21 +93,24 @@ async def on_message(message):
         for i in dpsList:
             try:
                 dpsTimes.append(profile['competitiveStats']['topHeroes'][i]['timePlayed'])
-                await message.channel.send(i + " : " +profile['competitiveStats']['topHeroes'][i]['timePlayed'])
 
             except KeyError:
                 dpsTimes.append("00:00")
-                await message.channel.send(i + " : 00:00")
+
+        #display the times of each hero
+        await message.channel.send(dpsTimes)
+        await message.channel.send(dpsList)
 
     if message.content.startswith('!top3Tanks'):
         for i in tankList:
             try:
                 tankTimes.append(profile['competitiveStats']['topHeroes'][i]['timePlayed'])
-                await message.channel.send(i + " : " +profile['competitiveStats']['topHeroes'][i]['timePlayed'])
 
             except KeyError:
                 tankTimes.append("00:00")
-                await message.channel.send(i + " : 00:00")
+
+        await message.channel.send(tankTimes)
+        await message.channel.send(tankList)
         
     if message.content.startswith('!top3Support'):
         for i in supportList:
@@ -115,6 +121,7 @@ async def on_message(message):
                 supportTimes.append("00:00")
             
         await message.channel.send(supportTimes)
+        await message.channel.send(supportList)
 
     if message.content.startswith('!printTopHeroesTC'):
         heroList = ['ashe', 'baptiste', 'brigitte', 'dVa', 'doomfist', 'echo',
@@ -127,4 +134,4 @@ async def on_message(message):
 
 
 
-client.run(os.getenv('discordToken'))
+client.run(os.getenv('TOKEN'))
