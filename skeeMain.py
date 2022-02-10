@@ -1,5 +1,7 @@
 from distutils.command.config import config
+from email import message
 from importlib.metadata import requires
+from operator import indexOf
 import discord
 from discord import Embed
 import requests
@@ -44,7 +46,42 @@ def getRank():
 def getTopHeroes():
     return profile['competitiveStats']['topHeroes']
 
-#def sortTimes(passList ):
+def hourSeconds(heroTime):
+    hourSecs = 0
+    splitTimes = heroTime.split(":")
+
+    hours = int(splitTimes[0])
+    hourSecs =  hours * 3600
+
+    return hourSecs
+
+def minutesSeconds(heroTime):
+    minSecs = 0 
+    splitTimes = heroTime.split(":")
+
+    minutes = int(splitTimes[1])
+    minSecs = minutes * 60 
+
+    return minSecs
+
+def heroSeconds(heroTime):
+    seconds = 0
+    splitTimes = heroTime.split(":")
+    
+    seconds = int(splitTimes[2])
+    #no further arithmetic???
+    return seconds 
+
+def totalSeconds(heroTime):
+    totalSeconds = 0 
+    
+    hourSecs = hourSeconds(heroTime)
+    minSecs = minutesSeconds(heroTime)
+    seconds = heroSeconds(heroTime)
+
+    totalSeconds = hourSecs + minSecs + seconds
+
+    return totalSeconds
 
 @client.event
 async def on_ready():
@@ -92,36 +129,66 @@ async def on_message(message):
     if message.content.startswith('!top3DPS'):
         for i in dpsList:
             try:
-                dpsTimes.append(profile['competitiveStats']['topHeroes'][i]['timePlayed'])
+                if(len(profile['competitiveStats']['topHeroes'][i]['timePlayed']) > 5 ):
+                    dpsTimes.append(profile['competitiveStats']['topHeroes'][i]['timePlayed'])
+                else:
+                    dpsTimes.append("00:" + profile['competitiveStats']['topHeroes'][i]['timePlayed'])
 
             except KeyError:
-                dpsTimes.append("00:00")
+                dpsTimes.append("00:00:00")
 
         #display the times of each hero
         await message.channel.send(dpsTimes)
         await message.channel.send(dpsList)
 
+        dpsListSecondTotals = []
+        for i in range(0, len(dpsTimes)):
+            dpsListSecondTotals.append(totalSeconds(dpsTimes[i]))
+
+        await message.channel.send(dpsListSecondTotals)
+
     if message.content.startswith('!top3Tanks'):
         for i in tankList:
             try:
-                tankTimes.append(profile['competitiveStats']['topHeroes'][i]['timePlayed'])
+                if(len(profile['competitiveStats']['topHeroes'][i]['timePlayed']) > 5 ):
+                    tankTimes.append(profile['competitiveStats']['topHeroes'][i]['timePlayed'])
+                else:
+                    tankTimes.append("00:" + profile['competitiveStats']['topHeroes'][i]['timePlayed'])
 
             except KeyError:
-                tankTimes.append("00:00")
+                tankTimes.append("00:00:00")
 
+        #trying to find the total seconds on each tank
         await message.channel.send(tankTimes)
         await message.channel.send(tankList)
+
+
+        tankListSecondTotals = []
+        for i in range(0, len(tankTimes)):
+            tankListSecondTotals.append(totalSeconds(tankTimes[i]))
+
+        await message.channel.send(tankListSecondTotals)
+        
         
     if message.content.startswith('!top3Support'):
         for i in supportList:
             try:
-                supportTimes.append(profile['competitiveStats']['topHeroes'][i]['timePlayed'])
+                if(len(profile['competitiveStats']['topHeroes'][i]['timePlayed']) > 5 ):
+                    supportTimes.append(profile['competitiveStats']['topHeroes'][i]['timePlayed'])
+                else:
+                    supportTimes.append("00:" + profile['competitiveStats']['topHeroes'][i]['timePlayed'])
 
             except KeyError:
-                supportTimes.append("00:00")
+                supportTimes.append("00:00:00")
             
         await message.channel.send(supportTimes)
         await message.channel.send(supportList)
+
+        supportListSecondTotals = []
+        for i in range(0, len(supportTimes)):
+            supportListSecondTotals.append(totalSeconds(supportTimes[i]))
+
+        await message.channel.send(supportListSecondTotals)
 
     if message.content.startswith('!printTopHeroesTC'):
         heroList = ['ashe', 'baptiste', 'brigitte', 'dVa', 'doomfist', 'echo',
