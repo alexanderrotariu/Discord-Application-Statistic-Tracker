@@ -22,3 +22,8 @@ to do:
 --SET PROFILE FUNCTION
         EX: !setProfile SkeeCoops#1827
 then u can use commands on that btag
+
+
+!pf summarized of a players stats 
+
+started cleaning up some of the main, will finish cleaning up when sorting alg is made
