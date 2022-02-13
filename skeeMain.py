@@ -41,60 +41,22 @@ async def on_message(message):
         embed = defs.sendRank()
         await message.channel.send(embed=embed)
 
-    #Will handle cleaning up top3 commands when sorting alg is finished.
-
     # -------------------------------------------------------------------------- TOP DPS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     if message.content.startswith('!topDPS'):
-        topDps = defs.sendTopDPS()
-        await message.channel.send(topDps)
-
+        embed = defs.sendTopDPS()
+        await message.channel.send(embed=embed)
     # -------------------------------------------------------------------------- TOP DPS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # -------------------------------------------------------------------------- TOP TANKS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     if message.content.startswith('!topTanks'):
-        for i in defs.tankList:
-            try:
-                if(len(defs.profile['competitiveStats']['topHeroes'][i]['timePlayed']) > 5 ):
-                    defs.tankTimes.append(defs.profile['competitiveStats']['topHeroes'][i]['timePlayed'])
-                else:
-                    defs.tankTimes.append("00:" + defs.profile['competitiveStats']['topHeroes'][i]['timePlayed'])
+        embed = defs.sendTopTanks()
+        await message.channel.send(embed=embed)
+    # -------------------------------------------------------------------------- TOP TANKS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # -------------------------------------------------------------------------- TOP SUPPORTS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    if message.content.startswith('!topSupports'):
+        embed = defs.sendTopSupports()
+        await message.channel.send(embed=embed)
+    # -------------------------------------------------------------------------- TOP SUPPORTS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-            except KeyError:
-                defs.tankTimes.append("00:00:00")
-
-        defs.tankTimes.sort(reverse = True)
-
-        #trying to find the total seconds on each tank
-        await message.channel.send(defs.tankTimes)
-        await message.channel.send(defs.tankList)
-
-
-        tankListSecondTotals = []
-        for i in range(0, len(defs.tankTimes)):
-            tankListSecondTotals.append(defs.totalSeconds(defs.tankTimes[i]))
-
-        await message.channel.send(tankListSecondTotals)
         
-        
-    if message.content.startswith('!topSupport'):
-        for i in defs.supportList:
-            try:
-                if(len(defs.profile['competitiveStats']['topHeroes'][i]['timePlayed']) > 5 ):
-                    defs.supportTimes.append(defs.profile['competitiveStats']['topHeroes'][i]['timePlayed'])
-                else:
-                    defs.supportTimes.append("00:" + defs.profile['competitiveStats']['topHeroes'][i]['timePlayed'])
-
-            except KeyError:
-                defs.supportTimes.append("00:00:00")
-            
-        
-        defs.supportTimes.sort(reverse = True)
-
-        await message.channel.send(defs.supportTimes)
-        await message.channel.send(defs.supportList)
-
-        supportListSecondTotals = []
-        for i in range(0, len(defs.supportTimes)):
-            supportListSecondTotals.append(defs.totalSeconds(defs.supportTimes[i]))
-
-        await message.channel.send(supportListSecondTotals)
 
 client.run(os.getenv('TOKEN'))
