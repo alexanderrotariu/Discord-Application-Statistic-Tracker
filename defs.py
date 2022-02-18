@@ -1,3 +1,4 @@
+from turtle import width
 import discord
 from discord import Embed
 import requests
@@ -49,6 +50,12 @@ def getRank():
 #GETTING TOP HEROES OF THE USER 
 def getTopHeroes():
     return profile['competitiveStats']['topHeroes']
+
+def getUserIcon():
+    return profile['icon']
+
+def getRankIcon():
+    return profile['ratingIcon']
 
 #CONVERTING HERO HOURS TO SECONDS
 def hourSeconds(heroTime):
@@ -277,3 +284,77 @@ def sendTopSupports():
     return embed
 
 #SUPPORT --------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+def getTop3DPS():
+    sortedDPS = getTopDPS()
+
+    #for i in range(0, 2):
+    #    top3DPS.append(str(i+1) +") "+ str(sortedDPS[i][0].capitalize()))
+    
+    top3DPSMsg = ""
+    for i in range(0, 3):
+        top3DPSMsg = top3DPSMsg + str(i+1) + ") "+ str(sortedDPS[i][0].capitalize()) + "\n"
+
+
+    return top3DPSMsg
+
+def getTop3Tanks():
+    sortedTanks = getTopTanks()
+
+    #for i in range(0, 2):
+    #    top3Tanks.append(sortedTanks[i])
+
+    top3TankMsg = ""
+    for i in range(0, 3):
+        top3TankMsg = top3TankMsg + str(i+1) + ") "+ str(sortedTanks[i][0].capitalize()) + "\n"
+
+    return top3TankMsg
+
+
+#returns a string with the top 3 in the role with the new lines in 
+def getTop3Support():
+    sortedSupports = getTopTanks()
+
+
+    #for i in range(0, 2):
+    #    top3Support.append(sortedSupport[i])
+
+    top3SupportsMsg = ""
+    for i in range(0, 3):
+        top3SupportsMsg = top3SupportsMsg + str(i+1) + ") "+ str(sortedSupports[i][0].capitalize()) + "\n"
+
+    return top3SupportsMsg
+
+
+
+#will take top 3 heroes from each role and embed it all together 
+#inclue rank and level 
+#thumbnail of user icon
+def sendOverall():
+    top3DPS = getTop3DPS()
+    top3Tanks = getTop3Tanks()
+    top3Support = getTop3Support()
+
+    #have 9 characters to display
+
+    playerRank = getRank()
+    playerLevel = getLevel()
+    playerName = getName()
+
+    playerIcon = getUserIcon()
+    playerRankIcon = getRankIcon()
+
+
+    #*, name, value, inline
+    embed = Embed(title=playerName+"'s Profile:", color=0xf04c9e)
+    embed.add_field(name="Rank: ", value=playerRank, inline=True)
+    embed.add_field(name="Level: ", value=playerLevel, inline=True)
+    embed.add_field(name= " --------------------------------------------------------------------------- ", value=" \n\u200b ", inline=False)
+    embed.add_field(name="Top 3 Tanks: ", value=top3Tanks, inline=True)
+    embed.add_field(name="Top 3 DPS: ", value=top3DPS, inline=True)
+    embed.add_field(name="Top 3 Supports: ", value=top3Support, inline=True)
+    embed.set_thumbnail(url=playerIcon)
+    embed.set_image(url=playerRankIcon)
+    
+    return embed

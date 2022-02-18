@@ -53,7 +53,10 @@ async def on_message(message):
         embed = defs.sendTopSupports()
         await message.channel.send(embed=embed)
     # -------------------------------------------------------------------------- TOP SUPPORTS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+    if message.content.startswith('!pf'):
+        embed = defs.sendOverall()
+        await message.channel.send(embed=embed)
+    #----------------------------------------------------------------------------OVERALL PROFILE
         
 
 client.run(os.getenv('TOKEN'))
