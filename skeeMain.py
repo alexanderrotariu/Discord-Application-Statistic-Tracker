@@ -19,13 +19,20 @@ client = discord.Client()
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
 
+
+
 @client.event
 async def on_message(message):
+
     if message.author == client.user:
         return
 
     if message.content.startswith('!hello'):
         await message.channel.send('Hello!')
+
+    #WORK ON THIS NEXT SESSION
+    if message.content.startswith('!setProfile'):
+        defs.getUserInput(message.content)
 
     if message.content.startswith('!name'):
         await message.channel.send(defs.getName())

@@ -5,7 +5,7 @@ import requests
 import json
 from dotenv import load_dotenv
 import os
-from operator import itemgetter
+from operator import index, itemgetter
 from pathlib import Path
 from heroIconLinks import heroUrl
 
@@ -15,6 +15,7 @@ from heroIconLinks import heroUrl
 #WILL HAVE TO CONSIDER 
 #TAKE ALL HERO ICON LINKS AND CHUCK THEM INTO A JSON AT SOME POINT BC IT LOOKS SO UGLY.
 #TAKE ALL THE ROLE LISTS AND PUT THEM INTO JSON TOO????
+
 
 platform = 'pc'
 Region = 'us'
@@ -29,9 +30,10 @@ dpsTimes = []
 tankTimes = []
 supportTimes = []
 
-file = None
+#GET https://ow-api.com/v1/stats/:platform/:region/:battletag/heroes/:heroes 
+#                                                                    WHERE HEROES IS THE LIST OF HEROES YOU WOULD LIKE
 
-response = requests.get('https://ow-api.com/v1/stats/pc/us/SkeeCoops-1827/heroes/'+comma.join(dpsList))
+response = requests.get('https://ow-api.com/v1/stats/pc/us/SkeeCoops-1827/complete')
 profile = response.json()
 
 #GETTING USER PROFILE 
@@ -133,8 +135,6 @@ def sendRank():
     embed.set_thumbnail(url=profile['ratingIcon'])
     
     return embed
-
-
 #DPS ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def getTopDPS():
@@ -179,7 +179,6 @@ def sendTopDPS():
     hUrl = heroUrl[topHero]
     embed.set_thumbnail(url=hUrl)
 
-
     return embed
 
 #DPS ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -223,10 +222,7 @@ def sendTopTanks():
 
     embed.add_field(name="Most played to least played:", value=msg)
 
-
     topHero = sortedTanks[0][0].capitalize()
-
-    
         
     hUrl = heroUrl[topHero]
     embed.set_thumbnail(url=hUrl)
@@ -275,11 +271,8 @@ def sendTopSupports():
 
     topHero = sortedSupports[0][0].capitalize()
 
-    
-        
     hUrl = heroUrl[topHero]
     embed.set_thumbnail(url=hUrl)
-
 
     return embed
 
@@ -314,7 +307,7 @@ def getTop3Tanks():
 
 #returns a string with the top 3 in the role with the new lines in 
 def getTop3Support():
-    sortedSupports = getTopTanks()
+    sortedSupports = getTopSupports()
 
 
     #for i in range(0, 2):
@@ -358,3 +351,22 @@ def sendOverall():
     embed.set_image(url=playerRankIcon)
     
     return embed
+
+#FIGURE OUT A WAY TO GET THE DISCORD MSG AND PASS IT INTO THIS FUNCTION 
+def getUserInput(msg):
+    #try:
+    splitString = msg.split(" ")
+    battleTag = splitString[1]
+    indexHash = battleTag.index('#')
+    
+    print(str(indexHash) + " " + str(type(indexHash)))
+
+    userName = battleTag[0:indexHash]
+    userNums = battleTag[indexHash+1:]
+    print("Your battletag is: " + userName + "#" + userNums)
+
+    #except TypeError:
+    #    print("Wrong format for command, please use the format: \"!setProfile [battleTag#4444]\" ")
+
+
+
