@@ -6,6 +6,8 @@ import json
 from dotenv import load_dotenv
 import os
 import defs
+import embeds
+import profile
 
 #CREDENTIALS 
 load_dotenv('.env')
@@ -31,37 +33,38 @@ async def on_message(message):
         await message.channel.send('Hello!')
 
     #WORK ON THIS NEXT SESSION
+    #THIS FUNCTION STILL IN DEVELOPMENT
     if message.content.startswith('!setProfile'):
         defs.getUserInput(message.content)
 
     if message.content.startswith('!name'):
-        await message.channel.send(defs.getName())
+        await message.channel.send(profile.getName())
 
     if message.content.startswith('!level'):
-        embed = defs.sendLevel()
+        embed = embeds.sendLevel()
         await message.channel.send(embed=embed)
 
     if message.content.startswith('!rank'):
-        embed = defs.sendRank()
+        embed = embeds.sendRank()
         await message.channel.send(embed=embed)
 
     # -------------------------------------------------------------------------- TOP DPS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     if message.content.startswith('!topDPS'):
-        embed = defs.sendTopDPS()
+        embed = embeds.sendTopDPS()
         await message.channel.send(embed=embed)
     # -------------------------------------------------------------------------- TOP DPS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # -------------------------------------------------------------------------- TOP TANKS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     if message.content.startswith('!topTanks'):
-        embed = defs.sendTopTanks()
+        embed = embeds.sendTopTanks()
         await message.channel.send(embed=embed)
     # -------------------------------------------------------------------------- TOP TANKS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # -------------------------------------------------------------------------- TOP SUPPORTS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     if message.content.startswith('!topSupports'):
-        embed = defs.sendTopSupports()
+        embed = embeds.sendTopSupports()
         await message.channel.send(embed=embed)
     # -------------------------------------------------------------------------- TOP SUPPORTS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     if message.content.startswith('!pf'):
-        embed = defs.sendOverall()
+        embed = embeds.sendOverall()
         await message.channel.send(embed=embed)
     #----------------------------------------------------------------------------OVERALL PROFILE
         

@@ -27,3 +27,9 @@ then u can use commands on that btag
 !pf summarized of a players stats 
 all 3 roles
 figure out a way to request all 3 roles as seperate variables
+
+
+STILL HAVENTED TESTED THE NEW SEPERATE FUNCTION FILE SYSTEM
+CHECK FROM LAPTOP AND THEN PUSH IF EVERYTHING IS SMOOTH
+
+

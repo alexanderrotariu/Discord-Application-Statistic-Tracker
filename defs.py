@@ -50,8 +50,8 @@ def getRank():
     return profile['rating']
 
 #GETTING TOP HEROES OF THE USER 
-def getTopHeroes():
-    return profile['competitiveStats']['topHeroes']
+#def getTopHeroes():
+#    return profile['competitiveStats']['topHeroes']
 
 def getUserIcon():
     return profile['icon']
@@ -210,25 +210,6 @@ def getTopTanks():
     #2D ARRAY HAS BECOME SORTED
     return output 
 
-def sendTopTanks():
-    embed = Embed(title=getName()+"'s top tank heroes:", color=0xf04c9e)
-
-    sortedTanks = getTopTanks()
-
-    msg = ""
-
-    for i in range(0, len(tankTimes)):
-        msg = msg + str(i+1) + ") "+ str(sortedTanks[i][0].capitalize()) + "\n"
-
-    embed.add_field(name="Most played to least played:", value=msg)
-
-    topHero = sortedTanks[0][0].capitalize()
-        
-    hUrl = heroUrl[topHero]
-    embed.set_thumbnail(url=hUrl)
-
-
-    return embed
 
 #TANK -----------------------------------------------------------------------------------------------------------------------------------------------------
 #SUPPORT --------------------------------------------------------------------------------------------------------------------------------------------------
