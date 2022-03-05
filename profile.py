@@ -1,10 +1,4 @@
-from turtle import width
-from discord import Embed
 import requests
-from dotenv import load_dotenv
-from operator import index, itemgetter
-from pathlib import Path
-from heroIconLinks import heroUrl
 
 platform = 'pc'
 Region = 'us'
@@ -23,27 +17,57 @@ supportTimes = []
 #                                                                    WHERE HEROES IS THE LIST OF HEROES YOU WOULD LIKE
 
 response = requests.get('https://ow-api.com/v1/stats/pc/us/SkeeCoops-1827/complete')
-profile = response.json()
+userProfile = response.json()
 
 #GETTING USER PROFILE 
 def getName():
-    return profile['name']
+    return userProfile['name']
 
 #GETTING USER LEVEL
 def getLevel():
-    fullLevel = profile['level'] + profile['prestige']*100
+    fullLevel = userProfile['level'] + userProfile['prestige']*100
     return fullLevel
 
 #GETTING USER RANK
 def getRank():
-    return profile['rating']
+    return userProfile['rating']
 
 #GETTING TOP HEROES OF THE USER 
 def getTopHeroes():
-    return profile['competitiveStats']['topHeroes']
+    return userProfile['competitiveStats']['topHeroes']
 
 def getUserIcon():
-    return profile['icon']
+    return userProfile['icon']
 
 def getRankIcon():
-    return profile['ratingIcon']
+    return userProfile['ratingIcon']
+
+def getAvgElims():                       
+    return userProfile["quickPlayStats"]["eliminationsAvg"]
+
+def getAvgDeaths():
+    return userProfile["quickPlayStats"]["deathsAvg"]
+
+def getAvgFinalBlows():
+    return userProfile["quickPlayStats"]["finalBlowsAvg"]
+
+def getAvgHealingDone():
+    return userProfile["quickPlayStats"]["healingDoneAvg"]
+
+def getAvgDmgDone():
+    return userProfile["quickPlayStats"]["damageDoneAvg"]
+
+def getBorder():
+
+    # Determining the players border
+    borderType = "Bronze"
+    if 600 < getLevel() < 1200:
+        borderType = "Silver"
+    elif 1200 < getLevel() < 1800:
+        borderType = "Gold"
+    elif 1800 < getLevel() < 2400:
+        borderType = "Platinum"
+    elif 2400 < getLevel() < 3000:
+        borderType = "Diamond"
+
+    return borderType

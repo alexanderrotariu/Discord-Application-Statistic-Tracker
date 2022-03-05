@@ -1,9 +1,17 @@
-#WILL HANDLE CREATING ALL NEW EMBED
-import defs, heroTimes, timeConvert, profile, heroList, heroIconLinks
+#ANY EMBEDS FOR THE PROGRAM WILL BE HANDELED HERE
+
+import heroTimes, profile, heroList, heroIconLinks, careerStats
 import heroIconLinks
 
 from discord import Embed
 
+#PARAMATERIZE THIS LINK TO USER INPUT
+overBuffLink = "https://www.overbuff.com/players/pc/SkeeCoops-1827"
+
+
+#ROLE EMBEDS
+
+#EMBED FOR SENDING TOP DPS 
 def sendTopDPS():
     embed = Embed(title=profile.getName()+"'s top DPS heroes:", color=0xf04c9e)
 
@@ -23,6 +31,7 @@ def sendTopDPS():
 
     return embed
 
+#EMBED FOR SENDING TOP TANKS
 def sendTopTanks():
     embed = Embed(title=profile.getName()+"'s top tank heroes:", color=0xf04c9e)
 
@@ -43,6 +52,7 @@ def sendTopTanks():
 
     return embed
 
+#EMBED FOR SENDING TOP SUPPOROTS 
 def sendTopSupports():
     embed = Embed(title=profile.getName()+"'s top support heroes:", color=0xf04c9e)
 
@@ -100,7 +110,7 @@ def sendOverall():
 def sendLevel():
     embed = Embed(title=profile.getName()+"'s Level", color=0xf04c9e)
     embed.add_field(name="Level:", value=profile.getLevel())
-    embed.set_thumbnail(url=profile['icon'])
+    embed.set_thumbnail(url=profile.getUserIcon())
 
     borderType = profile.getBorder()
 
@@ -111,11 +121,25 @@ def sendLevel():
 def sendRank():
     embed = Embed(title=profile.getName()+"'s Rank", color=0xf04c9e)
     embed.add_field(name="Rank:", value=profile.getRank())
-    embed.set_thumbnail(url=profile['ratingIcon'])
+    embed.set_thumbnail(url=profile.getRankIcon())
     
     return embed
 
+def sendAvgStatsQP():
+    #Discord Embed 
+    avgStats = careerStats.getAvgStats()
 
+    playerIcon = profile.getUserIcon()
+    playerName = profile.getName()
 
+    #avgStats = [elims average, death average, final blows average, healing done average, damage done average]
 
+    embed = Embed(title=playerName+"'s Career Average Stats:", url=overBuffLink , color=0xf04c9e)
+    embed.add_field(name="Average Eliminations: ", value=avgStats[0], inline=True)
+    embed.add_field(name="Average Damage: ", value=avgStats[4], inline=True)
+    embed.add_field(name="Average Final Blows: ", value=avgStats[2],inline=True)
+    embed.add_field(name= "Average Healing: ", value=avgStats[3], inline =True)
+    embed.add_field(name="Average Deaths: ", value=avgStats[1], inline=True)
+    embed.set_thumbnail(playerIcon)
 
+    return embed

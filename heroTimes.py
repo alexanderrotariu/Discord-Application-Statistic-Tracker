@@ -1,7 +1,5 @@
-from turtle import width
 import requests
 from operator import itemgetter
-from heroIconLinks import heroUrl
 import timeConvert, heroList
 
 dpsTimes = []
@@ -82,7 +80,7 @@ def getTopSupports():
 
     #Making the hero time in seconds list here:
     for i in range(0, len(supportTimes)):
-        heroTimeSeconds.append(int(timeConvert(supportTimes[i])))
+        heroTimeSeconds.append(int(timeConvert.totalSeconds(supportTimes[i])))
 
     #Making a list of lists 
     heroNameAndSeconds = list(zip(heroList.supportList, heroTimeSeconds))

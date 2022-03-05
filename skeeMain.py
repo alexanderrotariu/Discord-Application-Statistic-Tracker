@@ -1,8 +1,4 @@
-from xml.sax import default_parser_list
 import discord
-from discord import Embed
-import requests
-import json
 from dotenv import load_dotenv
 import os
 import defs
@@ -48,25 +44,30 @@ async def on_message(message):
         embed = embeds.sendRank()
         await message.channel.send(embed=embed)
 
-    # -------------------------------------------------------------------------- TOP DPS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # -------------------------------------------------------------------------- TOP DPS 
     if message.content.startswith('!topDPS'):
         embed = embeds.sendTopDPS()
         await message.channel.send(embed=embed)
-    # -------------------------------------------------------------------------- TOP DPS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    # -------------------------------------------------------------------------- TOP TANKS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # -------------------------------------------------------------------------- TOP DPS 
+    # -------------------------------------------------------------------------- TOP TANKS 
     if message.content.startswith('!topTanks'):
         embed = embeds.sendTopTanks()
         await message.channel.send(embed=embed)
-    # -------------------------------------------------------------------------- TOP TANKS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    # -------------------------------------------------------------------------- TOP SUPPORTS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # -------------------------------------------------------------------------- TOP TANKS 
+    # -------------------------------------------------------------------------- TOP SUPPORTS 
     if message.content.startswith('!topSupports'):
         embed = embeds.sendTopSupports()
         await message.channel.send(embed=embed)
-    # -------------------------------------------------------------------------- TOP SUPPORTS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # -------------------------------------------------------------------------- TOP SUPPORTS 
+    #----------------------------------------------------------------------------OVERALL TOP HEROS
     if message.content.startswith('!pf'):
         embed = embeds.sendOverall()
         await message.channel.send(embed=embed)
-    #----------------------------------------------------------------------------OVERALL PROFILE
-        
+    #----------------------------------------------------------------------------OVERALL TOP HEROS 
+    #----------------------------------------------------------------------------AVERAGE PROFILE STATS QUICK PLAY
+    if message.content.startswith('!avgStatsQP'):
+        embed = embeds.sendAvgStatsQP()
+        await message.channel.send(embed=embed)
+    #----------------------------------------------------------------------------AVERAGE PROFILE STATS QUICK PLAY
 
 client.run(os.getenv('TOKEN'))

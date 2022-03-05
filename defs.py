@@ -1,12 +1,6 @@
-from turtle import width
-import discord
 from discord import Embed
 import requests
-import json
-from dotenv import load_dotenv
-import os
-from operator import index, itemgetter
-from pathlib import Path
+from operator import itemgetter
 from heroIconLinks import heroUrl
 
 
