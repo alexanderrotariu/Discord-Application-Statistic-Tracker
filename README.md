@@ -17,7 +17,7 @@ Full list of commands and functionality: ***TBD***
 
 ![alt text](https://cdn.discordapp.com/attachments/928730827611832340/944041515666268160/unknown.png)
 
-## Showing the average statistics for a players profile (quickplay):
+## Showing the average statistics for a players profile (quickplay & competitive):
 
-![alt text](https://cdn.discordapp.com/attachments/928730827611832340/959979757393547264/unknown.png)
+![alt text](https://media.discordapp.net/attachments/750865948004843541/960295904135508018/unknown.png?width=497&height=676)
 
