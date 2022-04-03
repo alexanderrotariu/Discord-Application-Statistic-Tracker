@@ -135,7 +135,7 @@ def sendAvgStatsQP():
 
     #avgStats = [elims average, death average, final blows average, healing done average, damage done average]
 
-    embed = Embed(title=playerName+"'s Career Average Stats:", url=overBuffLink , color=0xf04c9e)
+    embed = Embed(title=playerName+"'s Career Average Stats (per 10 minutes):", url=overBuffLink , color=0xf04c9e)
     embed.add_field(name="Average Eliminations: ", value=avgStats[0], inline=False)
     embed.add_field(name="Average Damage: ", value=avgStats[4], inline=False)
     embed.add_field(name="Average Final Blows: ", value=avgStats[2],inline=False)
