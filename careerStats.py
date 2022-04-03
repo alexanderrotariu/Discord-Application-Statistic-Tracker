@@ -1,5 +1,11 @@
 import profile
 
+#WHAT IS THE FUCKING POINT OF THIS FILE I DONT REMEMBER WHY I WROTE THIS
+
+#ONLY GOD KNOWS WHY THIS FILE EXISTS
+
+
+
 def getAvgStats():
     elimsAvg = profile.getAvgElims()
     avgDeaths = profile.getAvgDeaths()

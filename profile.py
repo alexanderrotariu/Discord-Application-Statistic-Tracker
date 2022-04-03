@@ -5,6 +5,8 @@ Region = 'us'
 battleTag = None
 comma = ","
 
+
+
 dpsList = ['ashe', 'bastion', 'doomfist', 'echo', 'genji', 'hanzo', 'junkrat', 'cassidy', 'mei', 'reaper', 'soldier76', 'sombra', 'symmetra', 'torbjorn', 'tracer', 'widowmaker']
 tankList = ['dVa','reinhardt', 'roadhog', 'sigma','winston', 'wreckingBall', 'zarya','orisa']
 supportList = ['ana','baptiste', 'brigitte','lucio','mercy', 'moira', 'zenyatta']
@@ -18,6 +20,7 @@ supportTimes = []
 
 response = requests.get('https://ow-api.com/v1/stats/pc/us/SkeeCoops-1827/complete')
 userProfile = response.json()
+
 
 #GETTING USER PROFILE 
 def getName():
@@ -43,19 +46,19 @@ def getRankIcon():
     return userProfile['ratingIcon']
 
 def getAvgElims():                       
-    return userProfile["quickPlayStats"]["eliminationsAvg"]
+    return userProfile['quickPlayStats']['careerStats']['allHeroes']['average']['eliminationsAvgPer10Min']
 
 def getAvgDeaths():
-    return userProfile["quickPlayStats"]["deathsAvg"]
+    return userProfile['quickPlayStats']['careerStats']['allHeroes']['average']['deathsAvgPer10Min']
 
 def getAvgFinalBlows():
-    return userProfile["quickPlayStats"]["finalBlowsAvg"]
+    return userProfile['quickPlayStats']['careerStats']['allHeroes']['average']['finalBlowsAvgPer10Min']
 
 def getAvgHealingDone():
-    return userProfile["quickPlayStats"]["healingDoneAvg"]
+    return userProfile['quickPlayStats']['careerStats']['allHeroes']['average']['healingDoneAvgPer10Min']
 
 def getAvgDmgDone():
-    return userProfile["quickPlayStats"]["damageDoneAvg"]
+    return userProfile["quickPlayStats"]['careerStats']['allHeroes']['average']["heroDamageDoneAvgPer10Min"]
 
 def getBorder():
 
