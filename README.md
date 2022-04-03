@@ -16,3 +16,8 @@ Full list of commands and functionality: ***TBD***
 ## Showing an Overview of a player's profile
 
 ![alt text](https://cdn.discordapp.com/attachments/928730827611832340/944041515666268160/unknown.png)
+
+## Showing the Average Statistics for a players profile (Quickplay):
+
+![alt text](https://cdn.discordapp.com/attachments/928730827611832340/959979757393547264/unknown.png)
+
