@@ -13,11 +13,11 @@ Full list of commands and functionality: ***TBD***
 
 ![alt text](https://cdn.discordapp.com/attachments/737088061250207859/942327772536242197/unknown.png)
 
-## Showing an Overview of a player's profile
+## Showing an overview of a player's profile
 
 ![alt text](https://cdn.discordapp.com/attachments/928730827611832340/944041515666268160/unknown.png)
 
-## Showing the Average Statistics for a players profile (Quickplay):
+## Showing the average statistics for a players profile (quickplay):
 
 ![alt text](https://cdn.discordapp.com/attachments/928730827611832340/959979757393547264/unknown.png)
 
