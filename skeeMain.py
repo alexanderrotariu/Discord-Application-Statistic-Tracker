@@ -69,5 +69,8 @@ async def on_message(message):
         embed = embeds.sendAvgStatsQP()
         await message.channel.send(embed=embed)
     #----------------------------------------------------------------------------AVERAGE PROFILE STATS QUICK PLAY
+    if message.content.startswith("!avgStatsComp"):
+        embed = embeds.sendAvgStatsComp()
+        await message.channel.send(embed=embed)
 
 client.run(os.getenv('TOKEN'))

@@ -128,14 +128,14 @@ def sendRank():
 #DEBUG THIS --------------------------------------------------------------------------
 def sendAvgStatsQP():
     #Discord Embed 
-    avgStats = careerStats.getAvgStats()
+    avgStats = careerStats.getQpAvgStats()
 
     playerIcon = profile.getUserIcon()
     playerName = profile.getName()
 
     #avgStats = [elims average, death average, final blows average, healing done average, damage done average]
 
-    embed = Embed(title=playerName+"'s Career Average Stats (per 10 minutes):", url=overBuffLink , color=0xf04c9e)
+    embed = Embed(title=playerName+"'s Quickplay Career Average Stats (per 10 minutes):", url=overBuffLink , color=0xf04c9e)
     embed.add_field(name="Average Eliminations: ", value=avgStats[0], inline=False)
     embed.add_field(name="Average Damage: ", value=avgStats[4], inline=False)
     embed.add_field(name="Average Final Blows: ", value=avgStats[2],inline=False)
@@ -146,3 +146,22 @@ def sendAvgStatsQP():
     return embed
 
 #DEBUG THIS --------------------------------------------------------------------------
+
+def sendAvgStatsComp():
+    #Discord Embed 
+    avgStats = careerStats.getCompAvgStats()
+
+    playerIcon = profile.getUserIcon()
+    playerName = profile.getName()
+
+    #avgStats = [elims average, death average, final blows average, healing done average, damage done average]
+
+    embed = Embed(title=playerName+"'s Competitive Career Average Stats (per 10 minutes):", url=overBuffLink , color=0xf04c9e)
+    embed.add_field(name="Average Eliminations: ", value=avgStats[0], inline=False)
+    embed.add_field(name="Average Damage: ", value=avgStats[4], inline=False)
+    embed.add_field(name="Average Final Blows: ", value=avgStats[2],inline=False)
+    embed.add_field(name= "Average Healing: ", value=avgStats[3], inline =False)
+    embed.add_field(name="Average Deaths: ", value=avgStats[1], inline=False)
+    embed.set_thumbnail(url=playerIcon)
+
+    return embed

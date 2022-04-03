@@ -45,20 +45,42 @@ def getUserIcon():
 def getRankIcon():
     return userProfile['ratingIcon']
 
-def getAvgElims():                       
+def getQpAvgElims():                       
     return userProfile['quickPlayStats']['careerStats']['allHeroes']['average']['eliminationsAvgPer10Min']
 
-def getAvgDeaths():
+def getQpAvgDeaths():
     return userProfile['quickPlayStats']['careerStats']['allHeroes']['average']['deathsAvgPer10Min']
 
-def getAvgFinalBlows():
+def getQpAvgFinalBlows():
     return userProfile['quickPlayStats']['careerStats']['allHeroes']['average']['finalBlowsAvgPer10Min']
 
-def getAvgHealingDone():
+def getQpAvgHealingDone():
     return userProfile['quickPlayStats']['careerStats']['allHeroes']['average']['healingDoneAvgPer10Min']
 
-def getAvgDmgDone():
+def getQpAvgDmgDone():
     return userProfile["quickPlayStats"]['careerStats']['allHeroes']['average']["heroDamageDoneAvgPer10Min"]
+
+#---------------------------------------------------------------------------------------------------------------------------------
+
+def getCompAvgDmgDone():
+    return userProfile["competitiveStats"]['careerStats']['allHeroes']['average']["heroDamageDoneAvgPer10Min"]
+    
+def getCompAvgElims():                       
+    return userProfile['competitiveStats']['careerStats']['allHeroes']['average']['eliminationsAvgPer10Min']
+
+def getCompAvgDeaths():
+    return userProfile['competitiveStats']['careerStats']['allHeroes']['average']['deathsAvgPer10Min']
+
+def getCompAvgFinalBlows():
+    return userProfile['competitiveStats']['careerStats']['allHeroes']['average']['finalBlowsAvgPer10Min']
+
+def getCompAvgHealingDone():
+    return userProfile['competitiveStats']['careerStats']['allHeroes']['average']['healingDoneAvgPer10Min']
+
+def getCompAvgDmgDone():
+    return userProfile["competitiveStats"]['careerStats']['allHeroes']['average']["heroDamageDoneAvgPer10Min"]
+
+#-----------------------------------------------------------------------------------------------------------------
 
 def getBorder():
 
