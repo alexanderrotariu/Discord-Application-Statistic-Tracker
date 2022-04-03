@@ -1,3 +1,10 @@
+#THIS FILE IS USELESS NOW
+
+#IF I WERE TO DELETE IT, THERE SHOULD BE NOTHING OF IMPORTANCE AFFECTED 
+
+
+
+
 from discord import Embed
 import requests
 from operator import itemgetter
